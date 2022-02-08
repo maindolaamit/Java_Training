@@ -69,15 +69,21 @@ public class MyFirstProgram {
 
     }
 
+    static void update_primitive(int a) {
+        a = a + 10;
+        System.out.println("inside method a = " + a);
+    }
+
     public static void main(String[] args) {
-//        System.out.println("My First Java Program");
-//        String[] fruits = {"GUAVA", "APPLE", "BANANA"};
 
 //        Student st = new Student("chanda", "123", "test@gmai.com", 1);
 //        System.out.println(st.toString());
 //        stringsConcept();
 
-        isSubstring("Amit Reddy", "x");
+//        isSubstring("Amit Reddy", "x");
+        int a = 10;
+        System.out.println("a = " + a);
+        update_primitive(a);
+        System.out.println("a = " + a);
     }
-
 }
