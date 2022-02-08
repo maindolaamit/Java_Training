@@ -148,7 +148,7 @@ public class MyFirstProgram {
         return sum;
     }
 
-    public static void main(String[] args) {
+    static void vargsDemo() {
 //        int[] b = {1, 2, 3};
 //        int sum = sumNumbers({1, 2, 3}); // will it work
         int[] a = new int[]{1, 2, 3, 4};
@@ -158,4 +158,43 @@ public class MyFirstProgram {
         sum = sumNumbers2(a);
         System.out.println("sum = " + sum);
     }
+
+    static void tenraryAndForeach() {
+        int a = 100;
+        boolean isOdd = true;
+        if (a % 2 == 0) {
+            isOdd = false;
+        }
+        // ternary operator
+        boolean isEven = a % 2 == 0 ? true : false;
+
+        int[] ints = {1, 2, 3, 4, 5, 6, 7};
+        for (int i = 0; i < ints.length; i++) {
+            int value = ints[i];
+            System.out.println("index : " + i + ", value = " + value);
+        }
+        System.out.println("------");
+        int i = 0;
+        for (int value : ints) {
+            System.out.println("index : " + i++ + ", value = " + value);
+//            System.out.println("value = " + value);
+        }
+    }
+
+    public static void main(String[] args) {
+        /**
+         * Employee class having 3 fields {id, name, email}
+         * 4 Sources - XML, JSON, CSV, Excel
+         * Main class - load data from any of the source and into a target.
+         * =========== Clauses ============
+         * Parse the data and convert to list of Students
+         * Before loading to DB we will have data converted a List of Students
+         * Loader class will receive List of Students as input to load data.
+         *
+         * ============
+         * AbstractSource - which will have some common functionalities
+         *
+         */
+    }
+
 }

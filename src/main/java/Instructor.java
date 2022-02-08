@@ -12,11 +12,13 @@ public class Instructor {
     }
 
     public Instructor(long id, String name, String title, String department) {
-        // your code
+        this(id, name, title);
+        this.department = department;
     }
 
     public Instructor(long id, String name, String title) {
-        // your code
+        this(id, name);
+        this.title = title;
     }
 
     public Instructor(long id, String name) {
