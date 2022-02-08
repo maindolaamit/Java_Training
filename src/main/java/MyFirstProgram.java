@@ -71,6 +71,7 @@ public class MyFirstProgram {
 
     /**
      * Java always pass by value, in case of primitive the value is stored in the stack
+     *
      * @param a An Object
      */
     static void updatePrimitive(int a) {
@@ -81,6 +82,7 @@ public class MyFirstProgram {
     /**
      * Java always pass by value, in case of Objects the value stored in stack is actual memory location of the object.
      * So the value passed to the method is actually the address of the Object.
+     *
      * @param s
      */
     static void updateStudent(Student s) {
@@ -91,8 +93,18 @@ public class MyFirstProgram {
 
     public static void main(String[] args) {
         Student st = new Student("chanda", "123", "test@gmai.com", 1);
-        System.out.println(String.format("Inside method - name : %s , rollNumber : %d "
-                , st.getName(), st.getRollNumber()));
+        System.out.println("st = " + st.toString());
+
+        Student st1 = new Student("chanda", "123", "test@gmai.com", 1);
+        System.out.println("st1 = " + st1.toString());
+
+//        if (st1 == st) {
+        if (st1.equals(st)) {
+            System.out.println("Both students are same");
+        } else {
+            System.out.println("Not same.");
+        }
+/*
         updateStudent(st);
         System.out.println(String.format("Inside method - name : %s , rollNumber : %d "
                 , st.getName(), st.getRollNumber()));
@@ -102,5 +114,6 @@ public class MyFirstProgram {
         System.out.println("a = " + a);
         updatePrimitive(a);
         System.out.println("a = " + a);
+*/
     }
 }
