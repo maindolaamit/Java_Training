@@ -27,14 +27,39 @@ public class MyFirstProgram {
     }
 
     // TODO : to implement by students
-    public static boolean isSubstring(String mainString, String checkString) {
 
+    /**
+     * This method checks if the given checkString is a substring in MainString.
+     *
+     * @param mainString  Main String
+     * @param checkString string to be checked
+     * @return Return true if substring else false
+     */
+    public static boolean isSubstring(String mainString, String checkString) {
+        // Convert to char array
+        char[] main = mainString.toCharArray(), subStr = checkString.toCharArray();
+        int lenMainString = main.length, lenCheckString = subStr.length;
+
+        // check the length of main string, if lesser than return false.
+        // mainString -> "am", checkString -> "ami"
+        if (lenMainString < lenCheckString) {
+            return false;
+        }
+
+        // check the first character of check string in main string
+        for (int i = 0; i < lenMainString; i++) {
+            if (main[i] == subStr[0]) {
+                for (int j = 0; j < lenCheckString - 1; j++) {
+                    // check for each character in substr against the main string
+                }
+            }
+        }
+        System.out.println("lenMainString = " + lenMainString);
         return true;
     }
 
     static void stringsConcept() {
         String a = "test";  // 12312312
-        // Todo : check with Vishwa : why different objects are created for a and b
         String b = "test";
 //        String b = a.toUpperCase().toLowerCase();
         b = b.toUpperCase();
@@ -45,13 +70,14 @@ public class MyFirstProgram {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        System.out.println("My First Java Program");
-        String[] fruits = {"GUAVA", "APPLE", "BANANA"};
+//        System.out.println("My First Java Program");
+//        String[] fruits = {"GUAVA", "APPLE", "BANANA"};
 
 //        Student st = new Student("chanda", "123", "test@gmai.com", 1);
 //        System.out.println(st.toString());
-        stringsConcept();
+//        stringsConcept();
+
+        isSubstring("Amit Reddy", "x");
     }
 
 }

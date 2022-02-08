@@ -29,6 +29,7 @@ public class Instructor {
      */
     public String getMostRecentBookTitle() {
         // your code
+        return null;
     }
 
     /**
@@ -42,6 +43,7 @@ public class Instructor {
      */
     public Book updateBook(int index, String title) {
         // your code
+        return null;
     }
 
     /**
@@ -53,6 +55,7 @@ public class Instructor {
      */
     public Book updateBook(int index, Book book) {
         // your code
+        return null;
     }
 
     public static void main(String[] args) {
