@@ -91,7 +91,20 @@ public class MyFirstProgram {
                 , s.getName(), s.getRollNumber()));
     }
 
-    public static void main(String[] args) {
+    private static void passByValueDemo() {
+        Student st = new Student("chanda", "123", "test@gmai.com", 1);
+        updateStudent(st);
+        System.out.println(String.format("Inside method - name : %s , rollNumber : %d "
+                , st.getName(), st.getRollNumber()));
+
+        //        isSubstring("Amit Reddy", "x");
+        int a = 10;
+        System.out.println("a = " + a);
+        updatePrimitive(a);
+        System.out.println("a = " + a);
+    }
+
+    public static void testEquals() {
         Student st = new Student("chanda", "123", "test@gmai.com", 1);
         System.out.println("st = " + st.toString());
 
@@ -104,16 +117,45 @@ public class MyFirstProgram {
         } else {
             System.out.println("Not same.");
         }
-/*
-        updateStudent(st);
-        System.out.println(String.format("Inside method - name : %s , rollNumber : %d "
-                , st.getName(), st.getRollNumber()));
+    }
 
-        //        isSubstring("Amit Reddy", "x");
-        int a = 10;
-        System.out.println("a = " + a);
-        updatePrimitive(a);
-        System.out.println("a = " + a);
-*/
+    /**
+     * Method to receive multiple integers and return their sum
+     *
+     * @param a Array of ints
+     * @return Sum of the Numbers
+     */
+    static int sumNumbers(int[] a) {
+        int sum = 0;
+        // Loop over each element in the array and add to sum
+        for (int i = 0; i < a.length; i++) {
+            sum += a[i];
+        }
+        return sum;
+    }
+
+    static int sumNumbers2(int... a) {
+        // by default, it will check if a has any value or not ...
+        // an empty list will created and assigned to a on the fly
+        int sum = 0;
+//        if (a == null) {
+//            return sum;
+//        }
+        // Loop over each element in the array and add to sum
+        for (int i = 0; i < a.length; i++) {
+            sum += a[i];
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+//        int[] b = {1, 2, 3};
+//        int sum = sumNumbers({1, 2, 3}); // will it work
+        int[] a = new int[]{1, 2, 3, 4};
+//        int sum = sumNumbers(null); // raise exception
+        int sum = sumNumbers2();
+        System.out.println("sum = " + sum);
+        sum = sumNumbers2(a);
+        System.out.println("sum = " + sum);
     }
 }
