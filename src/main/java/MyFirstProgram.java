@@ -69,21 +69,38 @@ public class MyFirstProgram {
 
     }
 
-    static void update_primitive(int a) {
+    /**
+     * Java always pass by value, in case of primitive the value is stored in the stack
+     * @param a An Object
+     */
+    static void updatePrimitive(int a) {
         a = a + 10;
         System.out.println("inside method a = " + a);
     }
 
+    /**
+     * Java always pass by value, in case of Objects the value stored in stack is actual memory location of the object.
+     * So the value passed to the method is actually the address of the Object.
+     * @param s
+     */
+    static void updateStudent(Student s) {
+        s.setRollNumber(s.getRollNumber() + 100);
+        System.out.println(String.format("Inside method - name : %s , rollNumber : %d "
+                , s.getName(), s.getRollNumber()));
+    }
+
     public static void main(String[] args) {
+        Student st = new Student("chanda", "123", "test@gmai.com", 1);
+        System.out.println(String.format("Inside method - name : %s , rollNumber : %d "
+                , st.getName(), st.getRollNumber()));
+        updateStudent(st);
+        System.out.println(String.format("Inside method - name : %s , rollNumber : %d "
+                , st.getName(), st.getRollNumber()));
 
-//        Student st = new Student("chanda", "123", "test@gmai.com", 1);
-//        System.out.println(st.toString());
-//        stringsConcept();
-
-//        isSubstring("Amit Reddy", "x");
+        //        isSubstring("Amit Reddy", "x");
         int a = 10;
         System.out.println("a = " + a);
-        update_primitive(a);
+        updatePrimitive(a);
         System.out.println("a = " + a);
     }
 }
