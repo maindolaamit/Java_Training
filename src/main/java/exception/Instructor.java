@@ -1,3 +1,5 @@
+package exception;
+
 import java.util.Arrays;
 
 public class Instructor {
@@ -29,7 +31,7 @@ public class Instructor {
 
     @Override
     public String toString() {
-        return "Instructor{" +
+        return "exception.Instructor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", title='" + title + '\'' +
@@ -43,17 +45,20 @@ public class Instructor {
      * This method should return the book title of the last element in the Books array.
      * Books array can have any number of elements
      *
-     * @return Book title of the last book in array
+     * @return exception.Book title of the last book in array
      */
     public String getMostRecentBookTitle() {
+        if (this.books == null) {
+            return "No books present.";
+        }
         return this.books[this.books.length - 1].title;
     }
 
     /**
      * todo : by students
-     * This method will update the Book instance at the specified index in the Books array with the specified book
+     * This method will update the exception.Book instance at the specified index in the Books array with the specified book
      * title.
-     * The method should also return the Book object which will have the old book for which title was updated.
+     * The method should also return the exception.Book object which will have the old book for which title was updated.
      *
      * @param index Index in array to update.
      * @param title New title of the book to update.
@@ -67,7 +72,7 @@ public class Instructor {
 
     /**
      * todo : by students
-     * This method updates the Book instance at the specified index in the Books array with the given Book object.
+     * This method updates the exception.Book instance at the specified index in the Books array with the given exception.Book object.
      *
      * @param index Index in array to update.
      * @param book  New book object
@@ -84,14 +89,20 @@ public class Instructor {
         Book book2 = new Book("Scala for Beginners");
         Book book3 = new Book("Effective Python");
 
+//        Instructor instructor = new Instructor(101, "John", "Assistant Professor",
+//                "Computer Science", new Book[]{book1, book2, book3});
+//        exception.Instructor instructor = new exception.Instructor(101, "John");
+//        System.out.println("instructor = " + instructor.toString());
+//        System.out.println(instructor.getMostRecentBookTitle());
+//        System.out.println("old book title: " + instructor.updateBook(1, "Effective C#").getTitle());
+//
+//        Book book4 = new Book("Introduction to Data Mining");
+//        System.out.println("old book title: " + instructor.updateBook(1, book4).getTitle());
+        // Scenario - Passing null to the Books
         Instructor instructor = new Instructor(101, "John", "Assistant Professor",
-                "Computer Science", new Book[]{book1, book2, book3});
-//        Instructor instructor = new Instructor(101, "John");
+                "Computer Science", null);
         System.out.println("instructor = " + instructor.toString());
         System.out.println(instructor.getMostRecentBookTitle());
-        System.out.println("old book title: " + instructor.updateBook(1, "Effective C#").getTitle());
 
-        Book book4 = new Book("Introduction to Data Mining");
-        System.out.println("old book title: " + instructor.updateBook(1, book4).getTitle());
     }
 }
