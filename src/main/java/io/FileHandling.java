@@ -5,15 +5,16 @@ import java.io.*;
 public class FileHandling {
 
     public static void main(String[] args) {
-        long start = System.currentTimeMillis();
-        fileStreamCopyImage();
-        long end = System.currentTimeMillis();
-        System.out.println("Input stream time in ms = " + (end - start));
-
-        start = System.currentTimeMillis();
-        bufferedFileStreamCopyImage();
-        end = System.currentTimeMillis();
-        System.out.println("Buffered Stream time in ms = " + (end - start));
+//        long start = System.currentTimeMillis();
+//        fileStreamCopyImage();
+//        long end = System.currentTimeMillis();
+//        System.out.println("Input stream time in ms = " + (end - start));
+//
+//        start = System.currentTimeMillis();
+//        bufferedFileStreamCopyImage();
+//        end = System.currentTimeMillis();
+//        System.out.println("Buffered Stream time in ms = " + (end - start));
+        bufferedFileReader();
     }
 
     /**
@@ -25,6 +26,7 @@ public class FileHandling {
             BufferedInputStream input = new BufferedInputStream(new FileInputStream("src/main/resources/sleeping.jpg"));
             BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream("image.jpg"));
             int read = input.read();
+            // -1 is just representing EOF
             while (read != -1) {
                 output.write(read);
                 read = input.read();
@@ -51,6 +53,18 @@ public class FileHandling {
             }
             input.close();
             output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void bufferedFileReader() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("pom.xml"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println("reader.readLine() = " + line);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
