@@ -48,7 +48,7 @@ public class Instructor {
      * @return exception.Book title of the last book in array
      */
     public String getMostRecentBookTitle() {
-        if (this.books == null) {
+        if (this.books == null || this.books.length == 0) {
             return "No books present.";
         }
         return this.books[this.books.length - 1].title;
@@ -104,5 +104,10 @@ public class Instructor {
         System.out.println("instructor = " + instructor.toString());
         System.out.println(instructor.getMostRecentBookTitle());
 
+        // Scenario - Passing empty Array to the Books
+        Instructor instructor1 = new Instructor(102, "Astha", "Professor",
+                "Computer Science", new Book[]{});
+        System.out.println("instructor1 = " + instructor1.toString());
+        System.out.println(instructor1.getMostRecentBookTitle());
     }
 }
