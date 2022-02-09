@@ -1,6 +1,9 @@
 package io;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FileHandling {
 
@@ -14,7 +17,15 @@ public class FileHandling {
 //        bufferedFileStreamCopyImage();
 //        end = System.currentTimeMillis();
 //        System.out.println("Buffered Stream time in ms = " + (end - start));
-        bufferedFileReader();
+//        bufferedFileReader();
+        // Newer implementation in Java
+//        try {
+//            System.out.println(Files.readString(Paths.get("pom.xml")));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        pathDemo();
+        fileDemo();
     }
 
     /**
@@ -65,6 +76,33 @@ public class FileHandling {
             while ((line = reader.readLine()) != null) {
                 System.out.println("reader.readLine() = " + line);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void pathDemo() {
+        String filePath = "src/main/java/io/FileHandling.java";
+        System.out.println("fileLoaction = " + filePath);
+        Path path = Paths.get(filePath);
+        System.out.println("path.getFileName() = " + path.getFileName());
+        System.out.println("path.getParent() = " + path.getParent());
+        if (path.endsWith(".xml")) {
+            System.out.println("It is an xml file");
+        } else {
+            System.out.println("Oops !!! some other file type.");
+        }
+    }
+
+    private static void fileDemo() {
+        File file = new File("pom.xml");
+        System.out.println(file.isDirectory() ? "Is a directory." : "Is a file.");
+        System.out.println("file.length() = " + file.length());
+        System.out.println("file.lastModified() = " + file.lastModified());
+
+        try {
+            boolean sameFile = Files.isSameFile(Path.of(file.getPath()), Paths.get("pom.xml"));
+            System.out.println("sameFile = " + sameFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
