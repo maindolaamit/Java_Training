@@ -1,3 +1,11 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class MyFirstProgram {
 
@@ -181,6 +189,40 @@ public class MyFirstProgram {
         }
     }
 
+    static void testLegacyDateAPI() {
+        Date currentDate = new Date();
+        System.out.println("currentDate: " + currentDate);
+        Calendar expiryDate = new GregorianCalendar(2017, 05, 30);
+        System.out.println("expiryDate : " + expiryDate);
+        System.out.println("expiryDate Time : " + expiryDate.getTime());
+        expiryDate.add(Calendar.MONTH, 8);
+        System.out.println("expiryDate Time : " + expiryDate.getTime());
+    }
+
+    static void testDateTimeAPI() {
+        LocalDate today = LocalDate.now();
+        System.out.println(today);
+        LocalTime time = LocalTime.now();
+        System.out.println(time);
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
+
+        LocalDate expiryDate = LocalDate.of(2021, 03, 21);
+        System.out.println("expiryDate = " + expiryDate);
+        expiryDate = expiryDate.plusMonths(1);
+        System.out.println("After adding month - expiryDate = " + expiryDate);
+        System.out.println("expiryDate.getYear() = " + expiryDate.getYear());
+        System.out.println("expiryDate.getMonth() = " + expiryDate.getMonth());
+        System.out.println("expiryDate.getDayOfMonth() = " + expiryDate.getDayOfMonth());
+        System.out.println("expiryDate.lengthOfMonth() = " + expiryDate.lengthOfMonth());
+
+        // Parsing a date
+        String date = "2021/Mar/21 14:05:55";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MMM/dd HH:mm:ss");
+        LocalDateTime parse = LocalDateTime.parse(date, dateTimeFormatter);
+        System.out.println("parsed date = " + parse);
+    }
+
     public static void main(String[] args) {
         /**
          * Employee class having 3 fields {id, name, email}
@@ -195,6 +237,7 @@ public class MyFirstProgram {
          * AbstractSource - which will have some common functionalities
          *
          */
+        testDateTimeAPI();
     }
 
 }
