@@ -65,6 +65,8 @@ public class Instructor {
      * @return Returns the old book object
      */
     public Book updateBook(int index, String title) {
+        // No books present
+        if (this.books == null || this.books.length == 0) return null;
         Book oldBook = this.books[index];
         this.books[index] = new Book(title);
         return oldBook;
@@ -79,6 +81,13 @@ public class Instructor {
      * @return Returns the old book object
      */
     public Book updateBook(int index, Book book) {
+        // No books present
+        if (this.books == null || this.books.length == 0) return null;
+        // Trim the index to last index if greater than length
+        index = Math.min(this.books.length - 1, index);
+        index = Math.max(index, 0);
+
+        // update and send
         Book oldBook = this.books[index];
         this.books[index] = book;
         return oldBook;
@@ -89,15 +98,6 @@ public class Instructor {
         Book book2 = new Book("Scala for Beginners");
         Book book3 = new Book("Effective Python");
 
-//        Instructor instructor = new Instructor(101, "John", "Assistant Professor",
-//                "Computer Science", new Book[]{book1, book2, book3});
-//        exception.Instructor instructor = new exception.Instructor(101, "John");
-//        System.out.println("instructor = " + instructor.toString());
-//        System.out.println(instructor.getMostRecentBookTitle());
-//        System.out.println("old book title: " + instructor.updateBook(1, "Effective C#").getTitle());
-//
-//        Book book4 = new Book("Introduction to Data Mining");
-//        System.out.println("old book title: " + instructor.updateBook(1, book4).getTitle());
         // Scenario - Passing null to the Books
         Instructor instructor = new Instructor(101, "John", "Assistant Professor",
                 "Computer Science", null);
@@ -109,5 +109,14 @@ public class Instructor {
                 "Computer Science", new Book[]{});
         System.out.println("instructor1 = " + instructor1.toString());
         System.out.println(instructor1.getMostRecentBookTitle());
+        // Final scenario
+        Instructor instructor2 = new Instructor(101, "John", "Assistant Professor",
+                "Computer Science", new Book[]{book1, book2, book3});
+        System.out.println("instructor = " + instructor.toString());
+        System.out.println(instructor2.getMostRecentBookTitle());
+        System.out.println("old book title: " + instructor2.updateBook(1, "Effective C#").getTitle());
+
+        Book book4 = new Book("Introduction to Data Mining");
+        System.out.println("old book title: " + instructor2.updateBook(1, book4).getTitle());
     }
 }
