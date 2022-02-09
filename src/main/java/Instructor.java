@@ -8,7 +8,8 @@ public class Instructor {
     public Book[] books;
 
     public Instructor(long id, String name, String title, String department, Book[] books) {
-        // your code
+        this(id, name, title, department);
+        this.books = books;
     }
 
     public Instructor(long id, String name, String title, String department) {
@@ -45,8 +46,7 @@ public class Instructor {
      * @return Book title of the last book in array
      */
     public String getMostRecentBookTitle() {
-        // your code
-        return null;
+        return this.books[this.books.length - 1].title;
     }
 
     /**
@@ -60,8 +60,9 @@ public class Instructor {
      * @return Returns the old book object
      */
     public Book updateBook(int index, String title) {
-        // your code
-        return null;
+        Book oldBook = this.books[index];
+        this.books[index] = new Book(title);
+        return oldBook;
     }
 
     /**
@@ -73,8 +74,9 @@ public class Instructor {
      * @return Returns the old book object
      */
     public Book updateBook(int index, Book book) {
-        // your code
-        return null;
+        Book oldBook = this.books[index];
+        this.books[index] = book;
+        return oldBook;
     }
 
     public static void main(String[] args) {
@@ -82,14 +84,14 @@ public class Instructor {
         Book book2 = new Book("Scala for Beginners");
         Book book3 = new Book("Effective Python");
 
-//        Instructor instructor = new Instructor(101, "John", "Assistant Professor",
-//                "Computer Science", new Book[]{book1, book2, book3});
-        Instructor instructor = new Instructor(101, "John");
+        Instructor instructor = new Instructor(101, "John", "Assistant Professor",
+                "Computer Science", new Book[]{book1, book2, book3});
+//        Instructor instructor = new Instructor(101, "John");
         System.out.println("instructor = " + instructor.toString());
-//        System.out.println(instructor.getMostRecentBookTitle());
-//        System.out.println("old book title: " + instructor.updateBook(1, "Effective C#").getTitle());
+        System.out.println(instructor.getMostRecentBookTitle());
+        System.out.println("old book title: " + instructor.updateBook(1, "Effective C#").getTitle());
 
-//        Book book4 = new Book("Introduction to Data Mining");
-//        System.out.println("old book title: " + instructor.updateBook(1, book4).getTitle());
+        Book book4 = new Book("Introduction to Data Mining");
+        System.out.println("old book title: " + instructor.updateBook(1, book4).getTitle());
     }
 }
