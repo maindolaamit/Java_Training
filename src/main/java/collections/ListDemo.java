@@ -1,6 +1,7 @@
 package collections;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ListDemo {
@@ -34,7 +35,7 @@ public class ListDemo {
         System.out.println("list1 = " + list1);
         list1.addAll(list2);
         list1.set(1, 20);
-        list1.add(0,  50);
+        list1.add(0, 50);
         System.out.println("list1 = " + list1);
 
         // Range operation
@@ -42,6 +43,23 @@ public class ListDemo {
         list3.add(10);
         System.out.println("list3 = " + list3);
 
+/*
         // iterate list
+        for (Integer intValue : list1) {
+            // delete if value is 50
+            if (intValue == 50) {
+                list1.remove(intValue);
+            }
+        }
+*/
+        Iterator iterator = list1.iterator();
+        while (iterator.hasNext()) {
+            Integer intValue = (Integer) iterator.next();
+            // delete if value is 50
+            if (intValue == 50) {
+                iterator.remove();
+            }
+        }
+        System.out.println("list1 = " + list1);
     }
 }
