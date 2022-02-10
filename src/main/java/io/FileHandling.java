@@ -24,8 +24,9 @@ public class FileHandling {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        pathDemo();
-        fileDemo();
+//        pathDemo();
+//        fileDemo();
+        serializeDemo();
     }
 
     /**
@@ -111,6 +112,41 @@ public class FileHandling {
             System.out.println("sameFile = " + sameFile);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void serializeDemo() {
+        Book book = new Book("Effective Java", "Java", "Vishal");
+        System.out.println("book = " + book);
+        serializeBook(book);
+        Book book1 = deserializeBook("book.ser");
+        System.out.println("book1 = " + book1);
+        if (book1.isEqualsTo(book)) {
+            System.out.println("both Books are same");
+        } else {
+            System.out.println("Books are not same.");
+        }
+    }
+
+    private static Book deserializeBook(String s) {
+        Book book = null;
+        // De-serialize the file
+        try (FileInputStream fis = new FileInputStream("book.ser");
+             ObjectInputStream ois = new ObjectInputStream(fis)
+        ) {
+            book = (Book) ois.readObject();
+        } catch (IOException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+        }
+        return book;
+    }
+
+    private static void serializeBook(Book book) {
+        try (FileOutputStream out = new FileOutputStream("book.ser")) {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);
+            objectOutputStream.writeObject(book);
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 }
