@@ -54,30 +54,36 @@ public class FileHandling {
      */
     private static void fileStreamCopyImage() {
         //        Stream --> InputStream --> FileInputStream
-        try {
-            FileInputStream input = new FileInputStream("src/main/resources/sleeping.jpg");
-            FileOutputStream output = new FileOutputStream("image.jpg");
+        // Try-with-resources
+        try (FileInputStream input = new FileInputStream("src/main/resources/sleeping.jpg");
+             FileOutputStream output = new FileOutputStream("image.jpg");) {
             int read = input.read();
             while (read != -1) {
                 output.write(read);
                 read = input.read();
             }
-            input.close();
-            output.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private static void bufferedFileReader() {
+        // We should always be closing the resources
+        BufferedReader reader = null;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("pom.xml"));
+            reader = new BufferedReader(new FileReader("pom.xml"));
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println("reader.readLine() = " + line);
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally { // Finally, block will always be executed
+            try {
+                if (reader != null) reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
