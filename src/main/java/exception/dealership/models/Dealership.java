@@ -1,5 +1,7 @@
 package exception.dealership.models;
 
+import exception.InvalidArgumentException;
+
 public class Dealership {
     private Car[] cars;
 
@@ -18,22 +20,25 @@ public class Dealership {
         return new Car(this.cars[index]);
     }
 
-    
-    public void sell(int index) {  
-        this.cars[index].drive();
-        this.cars[index] = null;
+    public void sell(int index) {
+        if (this.cars == null || 0 == this.cars.length) {
+            throw new InvalidArgumentException("Dealer has no cars in the lot.");
+        }
+        try {
+            this.cars[index].drive();
+            this.cars[index] = null;
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidArgumentException("Index can not be greater than " + this.cars.length);
+        }
     }
 
     /**
      * Name: isEmpty
      *
-     * @return (boolean)
-     * Inside the function:
-     *   • returns true if there are no more cars.
-     * 
+     * @return (boolean) Inside the function: • returns true if there are no more
+     * cars.
      */
 
-     
     public String toString() {
         String temp = "\n\n";
         for (int i = 0; i < this.cars.length; i++) {
@@ -46,6 +51,5 @@ public class Dealership {
         }
         return temp;
     }
-
 
 }

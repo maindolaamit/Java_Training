@@ -1,42 +1,50 @@
 package exception.dealership.models;
 
 public class Car {
-    private String make;
-    private double price;
+	private String make;
+	private double price;
 
-    public Car(String make, double price) {
-        this.make = make;
-        this.price = price;
-    }
+	public Car(String make, double price) {
+		if (price < 0)
+			throw new IllegalArgumentException("Price can not be less than 0.");
+		if (make.isBlank())
+			throw new IllegalArgumentException("Make can no be Blank");
+		this.make = make;
+		this.price = price;
+	}
 
-    public Car(Car source) { 
-            this.make = source.make;
-            this.price = source.price;    
-    }
-    public String getMake() {
-        return this.make;
-    }
+	public Car(Car source) {
+		this.make = source.make;
+		this.price = source.price;
+	}
 
-    public double getPrice() {
-        return this.price;
-    }
+	public String getMake() {
+		return this.make;
+	}
 
-    public void setMake(String make) {
-        this.make = make;
-    }
+	public double getPrice() {
+		return this.price;
+	}
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+	public void setMake(String make) {
+		if (make.isBlank())
+			throw new IllegalArgumentException("Make can no be Blank");
+		this.make = make;
+	}
 
-    public void drive() {
-        System.out.println("\nYou bought the beautiful " + this.make + " for " + this.price + ".");
-        System.out.println("Please drive your car to the nearest exit.\n");
-    }
+	public void setPrice(double price) {
+		if (price < 0)
+			throw new IllegalArgumentException("Price can not be less than 0.");
+		this.price = price;
+	}
 
-    public String toString() {
-        return "\tMake: " + this.make + ".\n" 
-            +  "\tPrice: " + this.price + ".\n";
-    }
+	public void drive() {
+		System.out.println("\nYou bought the beautiful " + this.make + " for " + this.price + ".");
+		System.out.println("Please drive your car to the nearest exit.\n");
+	}
+
+	public String toString() {
+		return "\tMake: " + this.make + ".\n" + "\tPrice: " + this.price + ".\n";
+	}
 
 }
