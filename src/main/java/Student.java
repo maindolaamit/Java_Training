@@ -57,8 +57,8 @@ public class Student {
          * Mutable - allows modification after the creation
          * Immutable - does not allow any modification after the creation
          */
-        return String.format("Id : %s, Name - %s, email : %s", this.id, this.name
-                , this.email);
+        return String.format("Id : %s, Name - %s, email : %s, RollNumber : %d", this.id, this.name
+                , this.email, this.rollNumber);
     }
 
     public boolean equals(Student obj) {

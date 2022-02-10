@@ -223,6 +223,20 @@ public class MyFirstProgram {
         System.out.println("parsed date = " + parse);
     }
 
+    static void finalDemo() {
+        final Student finalStudent = new Student("shilpa", "1", "test@mail.com", 1);
+        System.out.println("finalStudent = " + finalStudent);
+        Student student = new Student("Vishal", "2", "test@mail.com", 2);
+        Student student1 = new Student("Deepak", "3", "test@mail.com", 3);
+        System.out.println("student = " + student);
+        student = student1;
+        System.out.println("student = " + student);
+        System.out.println("Changing roll number for final student");
+        // Final prevent re-assigning but the Object is not Immutable
+        finalStudent.setRollNumber(5);
+        System.out.println("finalStudent = " + finalStudent);
+    }
+
     public static void main(String[] args) {
         /**
          * Employee class having 3 fields {id, name, email}
@@ -237,7 +251,7 @@ public class MyFirstProgram {
          * AbstractSource - which will have some common functionalities
          *
          */
-        testDateTimeAPI();
+        finalDemo();
     }
 
 }
