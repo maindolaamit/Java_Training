@@ -4,12 +4,25 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Book implements Serializable {
-    private String name, category, author;
+    private String name;
+    private String category;
+    private String author;
+    Integer price; // added a new field
+
+    // Added to handle incompatibility issue
+    private static final long serialVersionUID = 905310033078904292L;
 
     public Book(String name, String title, String author) {
         this.name = name;
         this.category = title;
         this.author = author;
+        this.price = 100; // handle default value
+    }
+
+    // constructor chaining
+    public Book(String name, String category, String author, Integer price) {
+        this(name, category, author);
+        this.price = price;
     }
 
     public String getName() {
@@ -30,6 +43,7 @@ public class Book implements Serializable {
                 "name='" + name + '\'' +
                 ", category='" + category + '\'' +
                 ", author='" + author + '\'' +
+                ", price=" + price +
                 '}';
     }
 

@@ -119,7 +119,7 @@ public class FileHandling {
         Book book = new Book("Effective Java", "Java", "Vishal");
         System.out.println("book = " + book);
         String filePath = "src/main/resources/book.ser";
-        serializeBook(book, filePath);
+//        serializeBook(book, filePath);
         Book book1 = deserializeBook(filePath);
         System.out.println("book1 = " + book1);
         if (book1.isEqualsTo(book)) {
