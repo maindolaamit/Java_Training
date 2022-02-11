@@ -35,7 +35,7 @@ public class Book implements Serializable {
 
     public boolean isEqualsTo(Book book) {
         if (this.name.equals(book.getName()) && this.author.equals(book.getAuthor())
-                && this.author.equals(book.getAuthor())) {
+                && this.category.equals(book.getCategory())) {
             return true;
         }
         return false;

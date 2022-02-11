@@ -118,8 +118,9 @@ public class FileHandling {
     private static void serializeDemo() {
         Book book = new Book("Effective Java", "Java", "Vishal");
         System.out.println("book = " + book);
-        serializeBook(book);
-        Book book1 = deserializeBook("book.ser");
+        String filePath = "src/main/resources/book.ser";
+        serializeBook(book, filePath);
+        Book book1 = deserializeBook(filePath);
         System.out.println("book1 = " + book1);
         if (book1.isEqualsTo(book)) {
             System.out.println("both Books are same");
@@ -128,10 +129,10 @@ public class FileHandling {
         }
     }
 
-    private static Book deserializeBook(String s) {
+    private static Book deserializeBook(String filePath) {
         Book book = null;
         // De-serialize the file
-        try (FileInputStream fis = new FileInputStream("book.ser");
+        try (FileInputStream fis = new FileInputStream("src/main/resources/book.ser");
              ObjectInputStream ois = new ObjectInputStream(fis)
         ) {
             book = (Book) ois.readObject();
@@ -141,8 +142,8 @@ public class FileHandling {
         return book;
     }
 
-    private static void serializeBook(Book book) {
-        try (FileOutputStream out = new FileOutputStream("book.ser")) {
+    private static void serializeBook(Book book, String filePath) {
+        try (FileOutputStream out = new FileOutputStream(filePath)) {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);
             objectOutputStream.writeObject(book);
         } catch (IOException exception) {
