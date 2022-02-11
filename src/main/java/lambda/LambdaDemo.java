@@ -30,5 +30,16 @@ public class LambdaDemo {
             System.out.println("Another Lambda method");
             System.out.println("But multiple statements this time.");
         };
+
+        // Another Interface to return sum of two number
+        // we can ommit return if only single statement
+        SimpleSumIntf sum = (int a, int b) -> a + b;
+        System.out.println(sum.sumTwoNumber(2,3));
+        // We can use any existing static method of a class with has the same signature
+        SimpleSumIntf sum1 = Integer::sum;
+        System.out.println(sum1.sumTwoNumber(4, 5));
+        // Using our own static method
+        SimpleSumIntf sum3 = SimpleSumHelper::sumTwoNumber;
+        System.out.println(sum3.sumTwoNumber(10, 20));
     }
 }
