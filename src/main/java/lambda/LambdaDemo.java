@@ -39,7 +39,14 @@ public class LambdaDemo {
         SimpleSumIntf sum1 = Integer::sum;
         System.out.println(sum1.sumTwoNumber(4, 5));
         // Using our own static method
-        SimpleSumIntf sum3 = SimpleSumHelper::sumTwoNumber;
+        SimpleSumIntf sum3 = SimpleNumberHelper::sumTwoNumber;
         System.out.println(sum3.sumTwoNumber(10, 20));
+
+        // multiple usages
+        SimpleNumberOprIntf diff = SimpleNumberHelper::diffTwoNumber;
+        System.out.println(diff.numberOperation(10, 20));
+
+        diff = SimpleNumberHelper::mulTwoNumber;
+        System.out.println(diff.numberOperation(4, 5));
     }
 }
