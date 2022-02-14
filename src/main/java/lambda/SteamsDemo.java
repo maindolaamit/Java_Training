@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,8 +32,7 @@ public class SteamsDemo {
     }
 
     public static void main(String[] args) {
-/*
-        // Create a stream of strings
+        // Create a stream of strings ; stream = forEach(Consumer<T> consumer)
         Stream<String> stream = Stream.of("a", "b", "c");
         // Print the stream
         stream.forEach(System.out::println);
@@ -44,18 +40,46 @@ public class SteamsDemo {
         Stream<Integer> stream2 = Stream.of(1, 2, 3);
         // Print the stream
         stream2.forEach(System.out::println);
-*/
 //        beforeStreams();
 //        afterStreams();
-//        reducerOperation();
-        collectionOperation();
+        reducerOperation();
+//        collectionOperation();
     }
 
+    /**
+     * Before streams
+     * Group all the books based on category. You will create a map of category and list of books
+     * HashMap<String, List<Book>>
+     */
     static void beforeStreams() {
+        System.out.println("========== Before stream ==========\n");
+        List<Book> books = loadBooksFromFile();
+        Map<String, List<Book>> booksByCategory = new HashMap<>();
+        for (Book book : books) {
+            String category = book.getCategory();
+            // Check if category is not null or blank
+            if (category != null && !category.isBlank()) {
+                // Get the list from map if present else an empty ArrayList
+                List<Book> bookList = booksByCategory.getOrDefault(category, new ArrayList<Book>());
+                // Add the new book to the list
+                bookList.add(book);
+                // Update the map with new list of books
+                booksByCategory.put(category, bookList);
+            }
+        }
+        System.out.println(booksByCategory);
     }
 
+    /**
+     * After streams
+     * Group all the books based on category. You will create a map of category and list of books
+     * HashMap<String, List<Book>>
+     */
     static void afterStreams() {
-
+        System.out.println("========== After stream ==========\n");
+        List<Book> books = loadBooksFromFile();
+        Map<String, List<Book>> collect = books.stream().collect(Collectors.groupingBy(b -> b.getCategory()));
+        System.out.println("booksByCategory = " + collect);
     }
 
     private static void reducerOperation() {

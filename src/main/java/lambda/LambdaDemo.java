@@ -2,6 +2,7 @@ package lambda;
 
 import java.util.Arrays;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Lambdas often called anonymous functions which can represented in a single statement
@@ -68,6 +69,12 @@ public class LambdaDemo {
         System.out.println(number + " - is even ? " + isEven);
         boolean isOdd = SimpleNumberHelper.filter(number, a -> a % 2 == 1);
         System.out.println(number + " - is odd ? " + isOdd);
+
+        Predicate<Integer> isEvenPredicate = a -> a % 2 == 0;
+        System.out.println("isEvenPredicate = " + isEvenPredicate.test(number));
+        System.out.println("isEvenPredicate negate = " + isEvenPredicate.negate().test(number));
+        System.out.println("isEvenPredicate and >10 = " + isEvenPredicate.and(a -> a >= 10).test(number));
+
         // filter the number array to get only even numbers
         Integer[] evenNumber = SimpleNumberHelper.filter(new int[]{1, 23, 4, 5, 6, 7, 20}, a -> a % 2 == 0);
         System.out.println("List of even numbers : " + Arrays.toString(evenNumber));

@@ -18,15 +18,16 @@ public class ReflectionDemo {
         System.out.println("Package Name = " + aClass.getPackageName());
         // Get the constructors of class
         Constructor[] constructors = aClass.getConstructors();
+        StringBuilder str = new StringBuilder("{");
         Arrays.stream(constructors).forEach(c -> {
-            StringBuilder str = new StringBuilder(c.getName()).append("(");
+            str.append(c.getName()).append("(");
             str.append(Arrays.stream(c.getParameterTypes())
                             .map(t -> t.getName())
                             .collect(Collectors.joining(",")))
-                    .append(")");
-            str.append(")");
-            System.out.println(str);
+                    .append("), ");
         });
+        str.append("}");
+        System.out.println(str);
 
         // View all declared methods
         Method[] declaredMethods = aClass.getDeclaredMethods();
