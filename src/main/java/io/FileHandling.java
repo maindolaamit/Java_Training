@@ -36,7 +36,7 @@ public class FileHandling {
         //        Stream --> InputStream --> FilterInputStream --> BufferedInputStream
         try {
             BufferedInputStream input = new BufferedInputStream(new FileInputStream("src/main/resources/sleeping.jpg"));
-            BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream("image.jpg"));
+            BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream("src/main/resources/image.jpg"));
             int read = input.read();
             // -1 is just representing EOF
             while (read != -1) {
@@ -57,7 +57,7 @@ public class FileHandling {
         //        Stream --> InputStream --> FileInputStream
         // Try-with-resources
         try (FileInputStream input = new FileInputStream("src/main/resources/sleeping.jpg");
-             FileOutputStream output = new FileOutputStream("image.jpg");) {
+             FileOutputStream output = new FileOutputStream("src/main/resources/image.jpg");) {
             int read = input.read();
             while (read != -1) {
                 output.write(read);
