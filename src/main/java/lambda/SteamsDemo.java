@@ -42,8 +42,8 @@ public class SteamsDemo {
         stream2.forEach(System.out::println);
 //        beforeStreams();
 //        afterStreams();
-        reducerOperation();
-//        collectionOperation();
+//        reducerOperation();
+        collectionOperation();
     }
 
     /**
@@ -78,8 +78,16 @@ public class SteamsDemo {
     static void afterStreams() {
         System.out.println("========== After stream ==========\n");
         List<Book> books = loadBooksFromFile();
-        Map<String, List<Book>> collect = books.stream().collect(Collectors.groupingBy(b -> b.getCategory()));
-        System.out.println("booksByCategory = " + collect);
+//        Map<String, List<Book>> collect = books.stream().collect(Collectors.groupingBy(b -> b.getCategory()));
+//        System.out.println("booksByCategory = " + collect);
+
+        List<Book> economics = books.stream().filter(b -> b.getCategory().equalsIgnoreCase("economics"))
+                .collect(Collectors.toList());
+        System.out.println(economics);
+
+        // Take list of title limited to 5 elements
+        List<String> booksTitle = books.stream().limit(5).map(Book::getTitle).collect(Collectors.toList());
+        System.out.println("booksTitle = " + booksTitle);
     }
 
     private static void reducerOperation() {
@@ -93,26 +101,26 @@ public class SteamsDemo {
         List<Book> books = loadBooksFromFile();
         String reduce = books.stream().map(Book::getIsbn).limit(5)
                 .reduce(""// Supplier<A>
-                        , (a, b) -> a + b + "," // accumulator BiConsumer<A, B>
+                        , (a, b) -> a + b + ", " // accumulator BiConsumer<A, B>
                 );
         System.out.println("reduce = " + reduce.substring(0, reduce.length() - 1));
 
         // Another reducer method with different datatype with combiner
-        String reduce2 = books.stream().map(Book::getIsbn).limit(2)
+        StringBuilder reduce2 = books.stream().map(Book::getIsbn).limit(2)
                 .reduce(new StringBuilder()
-                        , (a, b) -> a.append(b).append(",")
+                        , (a, b) -> a.append(b).append("-")
                         , (a, b) -> a.append(b) // BinaryOperator<A>
                         // required only in parallel stream but developer kept it like this instead of
                         // two versions to keep stream API agnostic of the underlying design
-                ).toString();
+                );
         System.out.println("reduce2 = " + reduce2);
 
         // Another reducer method with different datatype without combiner
-        String reduce3 = books.stream().map(b -> new StringBuilder(b.getIsbn())).limit(2)
-                .reduce(new StringBuilder(), (a, b) -> a.append(b).append(",")).toString();
+        StringBuilder reduce3 = books.stream().map(b -> new StringBuilder(b.getIsbn())).limit(2)
+                .reduce(new StringBuilder(), (a, b) -> a.append(b).append(","));
         System.out.println("reduce3 = " + reduce3);
 
-        // try above with parallel stream and see results
+        // TODO : try above with parallel stream and see results
     }
 
     private static void collectionOperation() {
