@@ -46,7 +46,7 @@ public class MyThread extends Thread {
     public void run() {
         List<Book> books = loadBooksFromFile();
         try {
-            Thread.sleep(TimeUnit.SECONDS.toMillis(5));
+            Thread.sleep(TimeUnit.SECONDS.toMillis(10));
             Map<String, Long> byCategoryCount = getBooksByCategory(books);
             System.out.println("Total books in the list: " + books.size());
             System.out.println("Total books by category: " + byCategoryCount);
