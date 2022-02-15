@@ -32,7 +32,14 @@ class BankAccount implements Runnable {
         System.out.println("Current Balance : " + this.balance);
     }
 
-    public void withdraw(int withdrawAmount) throws InterruptedException {
+
+    /**
+     * use synchronized to put locks - which will prevent multiple thread access over the code section
+     *
+     * @param withdrawAmount
+     * @throws InterruptedException
+     */
+    public synchronized void withdraw(int withdrawAmount) throws InterruptedException {
         String threadName = Thread.currentThread().getName();
         System.out.println(String.format("%s is withdrawing money.", threadName));
         if (this.balance >= withdrawAmount) {
