@@ -30,4 +30,39 @@ public class Store {
         }
         return temp;
     }
+
+    public void addMovie(Movie movie) {
+        this.movies.add(movie);
+    }
+
+    public boolean contains(Movie movie) {
+        for (Movie movie1 : this.movies) {
+            if (movie1.equals(movie)) {return true;}
+        }
+        return false;
+    }
+
+    // Sell the movie
+    public boolean sellMovie(Movie movie) {
+        if (this.contains(movie) && movie.isAvailable()) {
+            this.movies.remove(movie);
+            System.out.println("Movie sold.");
+            return true;
+        }
+        System.out.println("Movie not found.");
+        throw new IllegalStateException("Movie not found.");
+    }
+
+    public void rentMovie(Movie movie) {
+        if (this.contains(movie)) {
+            movie.setAvailable(false);
+        }
+    }
+
+    // Return the rentred movie
+    public void returnMovie(Movie movie) {
+        if (this.contains(movie)) {
+            movie.setAvailable(true);
+        }
+    }
 }

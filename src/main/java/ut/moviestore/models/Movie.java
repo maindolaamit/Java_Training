@@ -1,6 +1,9 @@
 package ut.moviestore.models;
 
-public class Movie { private String name;
+import javax.management.ObjectInstance;
+
+public class Movie {
+    private String name;
     private String format;
     private double rating;
     private double sellingPrice;
@@ -100,5 +103,24 @@ public class Movie { private String name;
                 "\t Selling Price: " + this.sellingPrice + "\n" +
                 "\t Rental Price: " + this.rentalPrice + "\n" +
                 "\t Availability: " + (this.isAvailable ? "in-stock" : "rented") + "\n";
+    }
+
+    @Override
+    public int hashCode() {
+        return String.format("%s%f%s", this.name, this.rating, this.format).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        } else if (obj == this) {
+            return true;
+        } else if (!(obj instanceof Movie)) {
+            return false;
+        } else {
+            Movie other = (Movie) obj;
+            return this.name.equals(other.name) && this.format.equals(other.format) && this.rating == other.rating;
+        }
     }
 }
